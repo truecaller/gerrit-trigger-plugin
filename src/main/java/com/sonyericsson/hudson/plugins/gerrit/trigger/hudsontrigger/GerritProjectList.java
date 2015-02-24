@@ -29,7 +29,7 @@ import com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.data.Compare
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -50,7 +50,8 @@ public final class GerritProjectList {
      * projectList data structure has Gerrit project's pattern as key value
      * and as content a ArrayList of Jenkins jobs related to that Gerrit project.
      */
-    private Map<String, ArrayList<GerritTrigger>> projectList = new HashMap<String, ArrayList<GerritTrigger>>();
+    private Map<String, ArrayList<GerritTrigger>> projectList =
+            new ConcurrentHashMap<String, ArrayList<GerritTrigger>>();
 
     /**
      * A private Constructor prevents any other class from instantiating.
